@@ -1,0 +1,11 @@
+.bg-secondary {
+  background-color: white !important;
+}
+
+.nav-link {
+  background-color: rgb(255, 153, 0) !important; 
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 153, 0, 0.609) !important; ;
+}
