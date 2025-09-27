@@ -44,35 +44,42 @@ $pdf->SetFont('helvetica', '', 10);
 $pdf->SetTextColor(0, 0, 0); // Negro
 
 // 🧾 Ejemplo de datos desde HTML
-$cliente     = $_POST['cliente'] ?? 'Nombre del cliente';
+$cliente     = $_POST['cliente'] ?? null;
 $fecha       = $_POST['fecha'] ?? date('d/m/Y');
 $fechaSave   = $_POST['fecha'] ?? date('dmY');
 $hora        = $_POST['hora'] ?? date('H:i:s');
-$marca       = $_POST['marca'] ?? 'Motorola';
-$modelo      = $_POST['modelo'] ?? 'Modelo';
-$imei        = $_POST['imei'] ?? '000000000000000';
-$telefono    = $_POST['telefono'] ?? '+54 9 3408 435682';
-$dni         = $_POST['dni'] ?? '44495699';
+$marca       = $_POST['marca'] ?? null;
+$modelo      = $_POST['modelo'] ?? null;
+$imei        = $_POST['imei'] ?? null;
+$telefono    = $_POST['telefono'] ?? null;
+$dni         = $_POST['dni'] ?? null;
 
 //Checks
-$ch_cargador = $_POST['cargador'] ?? true;
-$ch_bateria  = $_POST['bateria'] ?? true;
-$ch_simcard  = $_POST['simcard'] ?? true;
-$ch_microsd  = $_POST['microsd'] ?? true;
-$ch_funda    = $_POST['funda'] ?? true;
-$ch_mouse    = $_POST['mouse'] ?? true;
-$ch_teclado  = $_POST['teclado'] ?? true;
-$ch_pendrive = $_POST['pendrive'] ?? true;
-$ch_disco    = $_POST['disco'] ?? true;
-$ch_btusb    = $_POST['btusb'] ?? true;
-$ch_lectora  = $_POST['lectora'] ?? true;
-$ch_pila     = $_POST['pila'] ?? true;
-$ch_otro     = $_POST['otro'] ?? true;
+$ch_cargador = $_POST['cargador'] ?? false;
+$ch_bateria  = $_POST['bateria'] ?? false;
+$ch_simcard  = $_POST['simcard'] ?? false;
+$ch_microsd  = $_POST['microsd'] ?? false;
+$ch_funda    = $_POST['funda'] ?? false;
+$ch_mouse    = $_POST['mouse'] ?? false;
+$ch_teclado  = $_POST['teclado'] ?? false;
+$ch_pendrive = $_POST['pendrive'] ?? false;
+$ch_disco    = $_POST['disco'] ?? false;
+$ch_btusb    = $_POST['btusb'] ?? false;
+$ch_lectora  = $_POST['lectora'] ?? false;
+$ch_pila     = $_POST['pila'] ?? false;
+$ch_otro     = $_POST['otro'] ?? false;
 
 //Datos del equipo
 $contrasena  = $_POST['contrasena'] ?? '12344321';
 $pin         = $_POST['pin'] ?? '12344321';
-$patron      = $_POST['patron'] ?? null;
+$patron = $_POST['imagenPatron'] ?? null;
+$base64 = explode(',', $patron)[1] ?? null;
+file_put_contents('patron.png', base64_decode($base64));
+
+//Datos de presupuesto
+$total       = $_POST['total'] ?? null;
+$sena        = $_POST['sena'] ?? null;
+$apagar      = $_POST['apagar'] ?? null;
 
 // 📍 Posicionar cada label manualmente
 
@@ -110,7 +117,7 @@ $y1 = 123;     // posición Y
 $w1 = 170;     // ancho del área
 $h1 = 40;      // alto del área
 
-$texto_descripcion = "Lorem Ipsum se refiere a un texto de relleno, o texto falso, que se utiliza en diseño gráfico y maquetación como marcador de posición para simular un contenido real sin distraer del aspecto visual del diseño. Procede de un texto latino de Cicerón pero está modificado y no tiene un significado coherente para el lector moderno, lo que permite centrarse en la tipografía, los colores y la distribución del espacio."; //414 Carácteres limite.
+$texto_descripcion = $_POST['descripcion'] ?? null; //414 Carácteres limite.
 
 // 🧾 MultiCell: crea un área con salto de línea automático
 $pdf->MultiCell($w1, $h1, $texto_descripcion, 1, 'J', false, 1, $x1, $y1, true);
@@ -192,7 +199,7 @@ $y2 = 185;     // posición Y
 $w2 = 81;     // ancho del área
 $h2 = 40;      // alto del área
 
-$texto_problema = "Lorem Ipsum se refiere a un texto de relleno, o texto falso, que se utiliza en diseño gráfico y maquetación como marcador de posición para simular un contenido real sin distraer del aspecto."; //190 carácteres límite
+$texto_problema = $_POST['problema'] ?? null; //190 carácteres límite
 
 // 🧾 MultiCell: crea un área con salto de línea automático
 $pdf->MultiCell($w2, $h2, $texto_problema, 1, 'J', false, 1, $x2, $y2, true);
@@ -203,7 +210,7 @@ $y3 = 185;     // posición Y
 $w3 = 81;     // ancho del área
 $h3 = 40;      // alto del área
 
-$texto_notas = "Lorem Ipsum se refiere a un texto de relleno, o texto falso, que se utiliza en diseño gráfico y maquetación como marcador de posición para simular un contenido real sin distraer del aspecto."; //190 carácteres límite
+$texto_notas= $_POST['notas'] ?? null; //190 carácteres límite
 
 // 🧾 MultiCell: crea un área con salto de línea automático
 $pdf->MultiCell($w3, $h3, $texto_notas, 1, 'J', false, 1, $x3, $y3, true);
@@ -215,6 +222,33 @@ $pdf->Write(0, $contrasena);
 //PIN
 $pdf->SetXY(20, 240);
 $pdf->Write(0, $pin);
+
+//Patron
+if (!empty($patron) && isset($patron))
+  {
+    $pdf->Image('patron.png', 77, 220, 26, 26, 'PNG');
+  } // x, y, ancho, alto
+
+// Presupuesto
+
+// 🏷️ Configuración de texto
+$pdf->SetFont('helvetica', '', 8);
+$pdf->SetTextColor(0, 0, 0); // Negro
+
+//Total
+$pdf->SetXY(160.5, 223.5);
+$pdf->Write(0, '$' . $pin);
+
+//Seña
+$pdf->SetXY(160.5, 230.5);
+$pdf->Write(0, '$' . $pin);
+
+//A pagar
+$pdf->SetXY(160.5, 237.5);
+$pdf->Write(0, '$' . $pin);
+
+
+
 
 
 // 🔚 Mostrar PDF

@@ -9,3 +9,12 @@
 .nav-link:hover {
   background-color: rgba(255, 153, 0, 0.609) !important; ;
 }
+
+h1.bg-primary {
+  color: white;
+  background-color: rgb(255, 153, 0) !important; 
+}
+
+nav.bg-navbar {
+  background: rgb(255, 153, 0)  
+}

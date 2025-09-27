@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" data-bs-theme="dark">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8">
@@ -15,13 +15,14 @@
 
 <body class="bg-light">
   <?php require_once __DIR__ . '/pages/shared/header.php'; ?>
-  <?php require_once __DIR__ . '/pages/shared/navbar.php'; ?>
 
   <div class="row w-100">
     <?php require_once __DIR__ . '/pages/shared/lateral.php' ?>
     <div class="col-9">
-      <main class="bg-dark my-4 py-4"> <!-- Inicio del ontenido de ésta web -->
-        <p><span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur porro saepe expedita maiores nihil doloremque esse qui fugiat quo sed excepturi eligendi, minima numquam vel dicta quasi consequuntur. Aut, praesentium.</span><span>Ratione molestias suscipit odio natus praesentium et voluptates a architecto laborum eaque fugiat aperiam voluptatem ea quos fugit aliquam veniam non, optio debitis laboriosam explicabo aspernatur! Vitae perspiciatis non quo.</span><span>Illum deleniti consequuntur asperiores. Natus dolorum vel asperiores minus, soluta modi accusantium ullam temporibus harum deleniti numquam dolore et rerum voluptatibus non recusandae nisi magnam minima rem officia corrupti quod.</span></p>
+      <main class="my-2 py-2"> <!-- Inicio del ontenido de ésta web -->
+        <h1 class="bg-primary p-3 fw-bold">Generar recibo de dispositivo</h1>
+
+        <?php include './pages/forms/nuevo-recibo.php'; ?>
       </main> <!-- Fin del contenido de ésta web -->
     </div>
   </div>
