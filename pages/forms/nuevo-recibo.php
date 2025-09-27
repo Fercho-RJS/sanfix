@@ -138,12 +138,12 @@
   <h3>Seguridad</h3>
   <div class="row">
     <div class="col-4">
-      <label class="form-label text-secondary" for="dni">Contraseña del dispositivo</label>
-      <input class="form-control form-control-sm" type="text" name="dni" id="dni">
+      <label class="form-label text-secondary" forcontrasena">Contraseña del dispositivo</label>
+      <input class="form-control form-control-sm" type="text" name="contrasena" id="contrasena">
     </div>
     <div class="col-4">
-      <label class="form-label text-secondary" for="dni">PIN</label>
-      <input class="form-control form-control-sm" type="text" name="dni" id="dni">
+      <label class="form-label text-secondary" for="pin">PIN</label>
+      <input class="form-control form-control-sm" type="text" name="pin" id="pin">
     </div>
     <div class="col-4">
       <label class="form-label text-secondary" for="dni">Patrón</label><br>

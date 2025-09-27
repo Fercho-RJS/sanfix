@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-bs-theme="">
 
 <head>
   <meta charset="UTF-8">
@@ -13,27 +13,23 @@
   <link rel="stylesheet" href="sanfix/style/custom-index.css">
 </head>
 
-<body class="bg-light">
+<body class="bg-dark">
   <?php require_once __DIR__ . '/pages/shared/header.php'; ?>
 
-  <div class="row w-100">
-    <?php require_once __DIR__ . '/pages/shared/lateral.php' ?>
-    <div class="col-9">
-      <main class="my-2 py-2"> <!-- Inicio del ontenido de ésta web -->
-        <h1 class="bg-primary p-3 fw-bold">Generar recibo de dispositivo</h1>
-
-        <?php include './pages/forms/nuevo-recibo.php'; ?>
-      </main> <!-- Fin del contenido de ésta web -->
-    </div>
-  </div>
+  <main class="container bg-body my-3 p-4 rounded-4"> <!-- Inicio del ontenido de ésta web -->
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui cumque odit temporibus repellat voluptas unde itaque ducimus voluptatum alias fugiat laboriosam est, id culpa reiciendis exercitationem illum soluta? Hic, veritatis.
+    Cum optio quas quae maxime placeat, laborum repellendus odit nisi nobis beatae tempore quisquam minus et impedit, fugiat ut omnis sequi totam debitis excepturi fugit. Rerum officiis adipisci nesciunt ad.
+    Deleniti aliquam architecto consectetur tempora mollitia minus illum ullam aspernatur provident reprehenderit. Dolore natus laudantium esse architecto cupiditate neque, vero perspiciatis nesciunt reprehenderit necessitatibus! Quam similique facere consequatur. Nostrum, nihil.
+    Nobis suscipit sint obcaecati quidem quae, esse sapiente repellat voluptas similique. Maxime, quisquam. Aut laborum earum accusamus eos, aspernatur beatae voluptatum, placeat suscipit vel tempora ex. Facere quasi dicta reprehenderit.</p>
+  </main> <!-- Fin del contenido de ésta web --
 
   <?php require_once __DIR__ . '/pages/shared/footer.php'; ?>
 </body>
 
 <!-- Scripts compartidos -->
-<?php require_once __DIR__ . '/pages/shared/scripts.php'; ?>
+  <?php require_once __DIR__ . '/pages/shared/scripts.php'; ?>
 
-<!-- Scripts específicos -->
-<script src="sanfix/scripts/custom-index.js"></script>
+  <!-- Scripts específicos -->
+  <script src="sanfix/scripts/custom-index.js"></script>
 
 </html>

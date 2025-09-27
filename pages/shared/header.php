@@ -1,4 +1,4 @@
-<header class="text-center">
+<header class="text-center bg-body">
   <img src="/sanfix/php/pdf/images/logosanfix.svg" class="my-4" height="140" alt="#">
   <?php require_once 'navbar.php'; ?>
 </header>

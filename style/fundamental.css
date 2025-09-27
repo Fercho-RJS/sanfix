@@ -16,5 +16,26 @@ h1.bg-primary {
 }
 
 nav.bg-navbar {
-  background: rgb(255, 153, 0)  
+  background: rgb(255, 153, 0); 
+}
+
+.nav-link {
+  color: white !important;
+}
+
+ul.dropdown-menu {
+  background: rgb(74, 74, 74);
+  border-radius: 0px;
+}
+
+ul.dropdown-menu li a.dropdown-item {
+  color: white;
+}
+
+ul.dropdown-menu li a.dropdown-item:hover {
+  background: rgb(65, 65, 65);
+}
+
+.text-primary{
+  color: rgb(255, 153, 0) !important;
 }

@@ -1,21 +1,6 @@
 <?php
 date_default_timezone_set('America/Argentina/Cordoba');
-//============================================================+
-// File name   : example_001.php
-// Begin       : 2008-03-04
-// Last Update : 2013-05-14
-//
-// Description : Example 001 for TCPDF class
-//               Default Header and Footer
-//
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//============================================================+
+
 
 /**
  * Creates an example PDF TEST document using TCPDF
@@ -70,8 +55,8 @@ $ch_pila     = $_POST['pila'] ?? false;
 $ch_otro     = $_POST['otro'] ?? false;
 
 //Datos del equipo
-$contrasena  = $_POST['contrasena'] ?? '12344321';
-$pin         = $_POST['pin'] ?? '12344321';
+$contrasena  = $_POST['contrasena'] ?? '';
+$pin         = $_POST['pin'] ?? '';
 $patron = $_POST['imagenPatron'] ?? null;
 $base64 = explode(',', $patron)[1] ?? null;
 file_put_contents('patron.png', base64_decode($base64));
