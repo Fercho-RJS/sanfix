@@ -26,33 +26,55 @@ $pdf->Image('./images/Blanco.png', 0, 0, $pageWidth, $pageHeight, '', '', '', fa
 
 // 🏷️ Configuración de texto
 $pdf->SetFont('helvetica', '', 10);
-$pdf->SetTextColor(0, 0, 0); // Negro
+$pdf->SetTextColor(90, 90, 90); // Negro
 
 // 🧾 Ejemplo de datos desde HTML
-$cliente     = $_POST['cliente'] ?? null;
+$cliente     = $_POST['cliente'] ?? '[Nombre del Cliente]';
 $fecha       = $_POST['fecha'] ?? date('d/m/Y');
 $fechaSave   = $_POST['fecha'] ?? date('dmY');
 $hora        = $_POST['hora'] ?? date('H:i:s');
-$marca       = $_POST['marca'] ?? null;
-$modelo      = $_POST['modelo'] ?? null;
-$imei        = $_POST['imei'] ?? null;
-$telefono    = $_POST['telefono'] ?? null;
-$dni         = $_POST['dni'] ?? null;
+$recibo_nro  = $_POST['nro-recibo'] ?? '##';
+$marca       = $_POST['marca'] ?? '[Marca del Dispositivo]';
+$modelo      = $_POST['modelo'] ?? '[Modelo del Dispositivo]';
+$categoria   = $_POST['categoria'] ?? '[Categoría del Dispositivo]';
+$imei        = $_POST['imei'] ?? '[Código IMEI del Dispositivo]';
+$condicion   = $_POST['condicion'] ?? '[Condición del Dispositivo]';
+$telefono    = $_POST['telefono'] ?? '[Teléfono del Cliente]';
+$email       = $_POST['email'] ?? '[alguien@example.com]';
+$direccion   = $_POST['direccion'] ?? '[Calle, Altura, Piso, Departamento]';
+$dni         = $_POST['dni'] ?? '[Documento del Cliente]';
 
 //Checks
-$ch_cargador = $_POST['cargador'] ?? false;
-$ch_bateria  = $_POST['bateria'] ?? false;
-$ch_simcard  = $_POST['simcard'] ?? false;
-$ch_microsd  = $_POST['microsd'] ?? false;
-$ch_funda    = $_POST['funda'] ?? false;
-$ch_mouse    = $_POST['mouse'] ?? false;
-$ch_teclado  = $_POST['teclado'] ?? false;
-$ch_pendrive = $_POST['pendrive'] ?? false;
-$ch_disco    = $_POST['disco'] ?? false;
-$ch_btusb    = $_POST['btusb'] ?? false;
-$ch_lectora  = $_POST['lectora'] ?? false;
-$ch_pila     = $_POST['pila'] ?? false;
-$ch_otro     = $_POST['otro'] ?? false;
+$ch_cargador = $_POST['cargador'] ?? true;
+$ch_bateria  = $_POST['bateria'] ?? true;
+$ch_caja     = $_POST['caja'] ?? true;
+$ch_simcard  = $_POST['simcard'] ?? true;
+$ch_microsd  = $_POST['microsd'] ?? true;
+$ch_funda    = $_POST['funda'] ?? true;
+$ch_mouse    = $_POST['mouse'] ?? true;
+$ch_teclado  = $_POST['teclado'] ?? true;
+$ch_storagedisk = $_POST['storagedisk'] ?? true;
+$ch_usbmemory    = $_POST['usbmemory'] ?? true;
+$ch_cable    = $_POST['cable'] ?? true;
+$ch_accesorios  = $_POST['accesorios'] ?? true;
+
+// Check boxes adicionales
+$ch_otro1     = isset($_POST['otro1']) ? true : false;
+$ch_otro2     = isset($_POST['otro2']) ? true : false;
+$ch_otro3     = isset($_POST['otro3']) ? true : false;
+$ch_otro4     = isset($_POST['otro4']) ? true : false;
+$ch_otro5     = isset($_POST['otro5']) ? true : false;
+$ch_otro6     = isset($_POST['otro6']) ? true : false;
+$ch_otro7     = isset($_POST['otro7']) ? true : false;
+$ch_otro8     = isset($_POST['otro8']) ? true : false;
+$otro1       = $_POST['texto-otro1'] ?? '[Otro 1]';
+$otro2       = $_POST['texto-otro2'] ?? '[Otro 2]';
+$otro3       = $_POST['texto-otro3'] ?? '[Otro 3]';
+$otro4       = $_POST['texto-otro4'] ?? '[Otro 4]';
+$otro5       = $_POST['texto-otro5'] ?? '[Otro 5]';
+$otro6       = $_POST['texto-otro6'] ?? '[Otro 6]';
+$otro7       = $_POST['texto-otro7'] ?? '[Otro 7]';
+$otro8       = $_POST['texto-otro8'] ?? '[Otro 8]';
 
 //Datos del equipo
 $contrasena  = $_POST['contrasena'] ?? '';
@@ -69,40 +91,56 @@ $apagar      = $_POST['apagar'] ?? null;
 // 📍 Posicionar cada label manualmente
 
 // Encabezado
-$pdf->SetXY(36, 25.1);
+$pdf->SetXY(60, 16);
 $pdf->Write(0, $fecha);
 
-$pdf->SetXY(36, 32.95);
+$pdf->SetXY(36, 24.5);
 $pdf->Write(0, $hora);
 
-// Fila de datos 1
-$pdf->SetXY(20, 67.8);
+$pdf->SetXY(46, 32.8);
+$pdf->Write(0, $recibo_nro);
+
+// Columna de datos 1
+$pdf->SetXY(56, 55.4);
 $pdf->Write(0, $cliente);
 
-$pdf->SetXY(109.5, 67.8);
+$pdf->SetXY(40, 61);
 $pdf->Write(0, $telefono);
 
-// Fila de datos 2
-$pdf->SetXY(20, 80.65);
-$pdf->Write(0, $marca);
+$pdf->SetXY(34, 66);
+$pdf->Write(0, $email);
 
-$pdf->SetXY(109.5, 80.65);
-$pdf->Write(0, $modelo);
-
-// Fila de datos 3
-$pdf->SetXY(20, 94);
-$pdf->Write(0, $imei);
-
-$pdf->SetXY(109.5, 94);
+$pdf->SetXY(38, 71.3);
 $pdf->Write(0, $dni);
 
-// Texto largo 
-$x1 = 20;      // posición X
-$y1 = 123;     // posición Y
-$w1 = 170;     // ancho del área
-$h1 = 40;      // alto del área
+$pdf->SetXY(40, 76.5);
+$pdf->Write(0, $direccion);
 
-$texto_descripcion = $_POST['descripcion'] ?? null; //414 Carácteres limite.
+
+// Columna de datos 2
+$pdf->SetXY(127, 55.4);
+$pdf->Write(0, $marca);
+
+$pdf->SetXY(129, 61);
+$pdf->Write(0, $modelo);
+
+$pdf->SetXY(132, 66);
+$pdf->Write(0, $categoria);
+
+$pdf->SetXY(140.5, 71.3);
+$pdf->Write(0, $imei);
+
+$pdf->SetXY(133.5, 76.5);
+$pdf->Write(0, $condicion);
+
+
+// Texto largo 
+$x1 = 16;      // posición X
+$y1 = 105;     // posición Y
+$w1 = 178;     // ancho del área
+$h1 = 45;      // alto del área
+
+$texto_descripcion = $_POST['descripcion'] ?? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do'; //400 Carácteres limite.
 
 // 🧾 MultiCell: crea un área con salto de línea automático
 $pdf->MultiCell($w1, $h1, $texto_descripcion, 1, 'J', false, 1, $x1, $y1, true);
@@ -111,91 +149,158 @@ $pdf->MultiCell($w1, $h1, $texto_descripcion, 1, 'J', false, 1, $x1, $y1, true);
 // Checks columna 1
 if (isset($ch_cargador) && $ch_cargador == true) {
   $pdf->SetFillColor(0, 0, 0); //Color
-  $pdf->Circle(21, 156.6, 1, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
+  $pdf->Circle(16.7, 135.7, 0.5, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
 }
 
 if (isset($ch_bateria) && $ch_bateria == true) {
   $pdf->SetFillColor(0, 0, 0); //Color
-  $pdf->Circle(21, 164, 1, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
+  $pdf->Circle(16.7, 135.7 + (4.35 * 1), 0.5, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
+}
+
+if (isset($ch_caja) && $ch_caja == true) {
+  $pdf->SetFillColor(0, 0, 0); //Color
+  $pdf->Circle(16.7, 135.7 + (4.35 * 2), 0.5, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
 }
 
 if (isset($ch_simcard) && $ch_simcard == true) {
   $pdf->SetFillColor(0, 0, 0); //Color
-  $pdf->Circle(21, 171.4, 1, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
+  $pdf->Circle(16.7, 135.7 + (4.2 * 3), 0.5, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
 }
 
 // Checks columna 2
 if (isset($ch_microsd) && $ch_microsd == true) {
   $pdf->SetFillColor(0, 0, 0); //Color
-  $pdf->Circle(48.2, 156.6, 1, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
+  $pdf->Circle(38.7, 135.7, 0.5, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
 }
 
 if (isset($ch_funda) && $ch_funda == true) {
   $pdf->SetFillColor(0, 0, 0); //Color
-  $pdf->Circle(48.2, 164, 1, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
+  $pdf->Circle(38.7, 135.7 + (4.35 * 1), 0.5, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
 }
 
 if (isset($ch_mouse) && $ch_mouse == true) {
   $pdf->SetFillColor(0, 0, 0); //Color
-  $pdf->Circle(48.2, 171.4, 1, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
+  $pdf->Circle(38.7, 135.7 + (4.35 * 2), 0.5, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
+}
+
+if (isset($ch_teclado) && $ch_teclado == true) {
+  $pdf->SetFillColor(0, 0, 0); //Color
+  $pdf->Circle(38.7, 135.7 + (4.2 * 3), 0.5, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
 }
 
 // Checks columna 3
-if (isset($ch_teclado) && $ch_teclado == true) {
+if (isset($ch_storagedisk) && $ch_storagedisk == true) {
   $pdf->SetFillColor(0, 0, 0); //Color
-  $pdf->Circle(89.8, 156.6, 1, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
+  $pdf->Circle(71.8, 135.7, 0.5, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
 }
 
-if (isset($ch_pendrive) && $ch_pendrive == true) {
+if (isset($ch_usbmemory) && $ch_usbmemory == true) {
   $pdf->SetFillColor(0, 0, 0); //Color
-  $pdf->Circle(89.8, 164, 1, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
+  $pdf->Circle(71.8, 135.7 + (4.35 * 1), 0.5, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
 }
 
-if (isset($ch_disco) && $ch_disco == true) {
+if (isset($ch_cable) && $ch_cable == true) {
   $pdf->SetFillColor(0, 0, 0); //Color
-  $pdf->Circle(89.8, 171.4, 1, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
+  $pdf->Circle(71.8, 135.7 + (4.35 * 2), 0.5, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
 }
 
-// Checks columna 4
-if (isset($ch_btusb) && $ch_btusb == true) {
+if (isset($ch_accesorios) && $ch_accesorios == true) {
   $pdf->SetFillColor(0, 0, 0); //Color
-  $pdf->Circle(127.8, 156.6, 1, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
-}
-
-if (isset($ch_lectora) && $ch_lectora == true) {
-  $pdf->SetFillColor(0, 0, 0); //Color
-  $pdf->Circle(127.8, 164, 1, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
-}
-
-if (isset($ch_pila) && $ch_pila == true) {
-  $pdf->SetFillColor(0, 0, 0); //Color
-  $pdf->Circle(127.8, 171.4, 1, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
+  $pdf->Circle(71.8, 135.7 + (4.2 * 3), 0.5, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
 }
 
 // Checks columna 5
-if (isset($ch_otro) && $ch_otro == true) {
+if (isset($ch_otro1) && $ch_otro1 == true) {
   $pdf->SetFillColor(0, 0, 0); //Color
-  $pdf->Circle(164, 156.6, 1, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
+  $pdf->Circle(108.5, 135.7, 0.5, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
+  // 🏷️ Configuración de texto
+  $pdf->SetFont('helvetica', '', 9);
+  $pdf->SetXY(110.5, 133.4);
+  $pdf->Write(0, $otro1);
+}
+
+if (isset($ch_otro2) && $ch_otro2 == true) {
+  $pdf->SetFillColor(0, 0, 0); //Color
+  $pdf->Circle(108.5, 135.7 + (4.35 * 1), 0.5, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
+  // 🏷️ Configuración de texto
+  $pdf->SetFont('helvetica', '', 9);
+  $pdf->SetXY(110.5, 133.4 + (4.4 * 1));
+  $pdf->Write(0, $otro2);
+}
+
+if (isset($ch_otro3) && $ch_otro3 == true) {
+  $pdf->SetFillColor(0, 0, 0); //Color
+  $pdf->Circle(108.5, 135.7 + (4.35 * 2), 0.5, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
+  // 🏷️ Configuración de texto
+  $pdf->SetFont('helvetica', '', 9);
+  $pdf->SetXY(110.5, 133.4 + (4.2 * 2));
+  $pdf->Write(0, $otro3);
+}
+
+if (isset($ch_otro4) && $ch_otro4 == true) {
+  $pdf->SetFillColor(0, 0, 0); //Color
+  $pdf->Circle(108.5, 135.7 + (4.2 * 3), 0.5, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
+  // 🏷️ Configuración de texto
+  $pdf->SetFont('helvetica', '', 9);
+  $pdf->SetXY(110.5, 133.4 + (4.2 * 3));
+  $pdf->Write(0, $otro4);
+}
+
+// Checks columna 5
+if (isset($ch_otro5) && $ch_otro5 == true) {
+  $pdf->SetFillColor(0, 0, 0); //Color
+  $pdf->Circle(151, 135.7, 0.5, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
+  // 🏷️ Configuración de texto
+  $pdf->SetFont('helvetica', '', 9);
+  $pdf->SetXY(154, 133.4);
+  $pdf->Write(0, $otro5);
+}
+
+if (isset($ch_otro6) && $ch_otro6 == true) {
+  $pdf->SetFillColor(0, 0, 0); //Color
+  $pdf->Circle(151, 135.7 + (4.35 * 1), 0.5, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
+  // 🏷️ Configuración de texto
+  $pdf->SetFont('helvetica', '', 9);
+  $pdf->SetXY(154, 133.4 + (4.4 * 1));
+  $pdf->Write(0, $otro6);
+}
+
+if (isset($ch_otro7) && $ch_otro7 == true) {
+  $pdf->SetFillColor(0, 0, 0); //Color
+  $pdf->Circle(151, 135.7 + (4.35 * 2), 0.5, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
+  // 🏷️ Configuración de texto
+  $pdf->SetFont('helvetica', '', 9);
+  $pdf->SetXY(154, 133.4 + (4.2 * 2));
+  $pdf->Write(0, $otro7);
+}
+
+if (isset($ch_otro8) && $ch_otro8 == true) {
+  $pdf->SetFillColor(0, 0, 0); //Color
+  $pdf->Circle(151, 135.7 + (4.2 * 3), 0.5, 0, 360, 'DF'); // X, Y, radio, ángulo inicial, final, estilo
+  // 🏷️ Configuración de texto
+  $pdf->SetFont('helvetica', '', 9);
+  $pdf->SetXY(154, 133.4 + (4.2 * 3));
+  $pdf->Write(0, $otro8);
 }
 
 // Texto lado 1 
-$x2 = 20;      // posición X
-$y2 = 185;     // posición Y
-$w2 = 81;     // ancho del área
+$x2 = 16;      // posición X
+$y2 = 160;     // posición Y
+$w2 = 86;     // ancho del área
 $h2 = 40;      // alto del área
 
-$texto_problema = $_POST['problema'] ?? null; //190 carácteres límite
+$texto_problema = $_POST['problema'] ?? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. olore magna aliqua. olore magna aliqua. olore magna aliqua.'; //170 carácteres límite
 
 // 🧾 MultiCell: crea un área con salto de línea automático
 $pdf->MultiCell($w2, $h2, $texto_problema, 1, 'J', false, 1, $x2, $y2, true);
 
 // Texto lado 2 
 $x3 = 109.5;      // posición X
-$y3 = 185;     // posición Y
-$w3 = 81;     // ancho del área
+$y3 = 183;     // posición Y
+$w3 = 0;     // ancho del área
 $h3 = 40;      // alto del área
 
-$texto_notas= $_POST['notas'] ?? null; //190 carácteres límite
+$texto_notas = $_POST['notas'] ?? null; //190 carácteres límite
 
 // 🧾 MultiCell: crea un área con salto de línea automático
 $pdf->MultiCell($w3, $h3, $texto_notas, 1, 'J', false, 1, $x3, $y3, true);
@@ -209,10 +314,9 @@ $pdf->SetXY(20, 240);
 $pdf->Write(0, $pin);
 
 //Patron
-if (!empty($patron) && isset($patron))
-  {
-    $pdf->Image('patron.png', 77, 220, 26, 26, 'PNG');
-  } // x, y, ancho, alto
+if (!empty($patron) && isset($patron)) {
+  $pdf->Image('patron.png', 77, 220, 26, 26, 'PNG');
+} // x, y, ancho, alto
 
 // Presupuesto
 

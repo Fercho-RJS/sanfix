@@ -9,10 +9,13 @@
           <a class="nav-link fw-bold" href="/sanfix/index.php">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Proveedores</a>
+          <a class="nav-link" href="/sanfix/pages/proveedores.php">Proveedores</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Clientes</a>
+          <a class="nav-link" href="/sanfix/pages/dispositivos.php">Dispositivos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/sanfix/pages/clientes.php">Clientes</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

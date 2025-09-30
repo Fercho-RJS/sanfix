@@ -17,10 +17,14 @@
   <?php require_once __DIR__ . '/pages/shared/header.php'; ?>
 
   <main class="container bg-body my-3 p-4 rounded-4"> <!-- Inicio del ontenido de ésta web -->
+    <?php if (isset($_GET['eliminado'])): ?>
+      <div class="alert alert-success text-center">✅ Proveedor eliminado correctamente.</div>
+    <?php endif; ?>
+
     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui cumque odit temporibus repellat voluptas unde itaque ducimus voluptatum alias fugiat laboriosam est, id culpa reiciendis exercitationem illum soluta? Hic, veritatis.
-    Cum optio quas quae maxime placeat, laborum repellendus odit nisi nobis beatae tempore quisquam minus et impedit, fugiat ut omnis sequi totam debitis excepturi fugit. Rerum officiis adipisci nesciunt ad.
-    Deleniti aliquam architecto consectetur tempora mollitia minus illum ullam aspernatur provident reprehenderit. Dolore natus laudantium esse architecto cupiditate neque, vero perspiciatis nesciunt reprehenderit necessitatibus! Quam similique facere consequatur. Nostrum, nihil.
-    Nobis suscipit sint obcaecati quidem quae, esse sapiente repellat voluptas similique. Maxime, quisquam. Aut laborum earum accusamus eos, aspernatur beatae voluptatum, placeat suscipit vel tempora ex. Facere quasi dicta reprehenderit.</p>
+      Cum optio quas quae maxime placeat, laborum repellendus odit nisi nobis beatae tempore quisquam minus et impedit, fugiat ut omnis sequi totam debitis excepturi fugit. Rerum officiis adipisci nesciunt ad.
+      Deleniti aliquam architecto consectetur tempora mollitia minus illum ullam aspernatur provident reprehenderit. Dolore natus laudantium esse architecto cupiditate neque, vero perspiciatis nesciunt reprehenderit necessitatibus! Quam similique facere consequatur. Nostrum, nihil.
+      Nobis suscipit sint obcaecati quidem quae, esse sapiente repellat voluptas similique. Maxime, quisquam. Aut laborum earum accusamus eos, aspernatur beatae voluptatum, placeat suscipit vel tempora ex. Facere quasi dicta reprehenderit.</p>
   </main> <!-- Fin del contenido de ésta web --
 
   <?php require_once __DIR__ . '/pages/shared/footer.php'; ?>
